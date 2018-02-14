@@ -1,0 +1,36 @@
+
+            input {
+                file {
+                    path => "/Users/yardman/development/york_university/yorkuniv/data/cameoeventcodes/*.csv"
+                    start_position => "beginning"
+                    sincedb_path => "/dev/null"
+                    }
+
+                }
+
+            filter{
+                    csv {
+                            separator => ","
+                            columns => ['cameoeventcode', 'eventdescription']
+
+                        }
+                    mutate {convert => ["cameoeventcode", "integer"]}
+mutate {convert => ["eventdescription", "string"]}
+                    
+
+            }
+
+                output {
+
+                        elasticsearch {
+                        hosts => "https://bbae3e2c87ebad52797057e4bf867ab7.us-central1.gcp.cloud.es.io:9243"
+                        user => "elastic"
+                        password => "32JDIr5lFONFUsCF0RQAOVwG"
+                        index => "eventcode"
+                        
+                        }
+
+                    stdout{}
+
+                    }
+        

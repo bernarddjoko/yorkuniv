@@ -1,0 +1,1 @@
+python generate_logstash_config.py gdelt events  "," "/Users/yardman/development/york_university/yorkuniv/data/cameoeventcodes/*.csv" events-headers.csv
